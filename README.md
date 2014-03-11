@@ -1,7 +1,8 @@
-Modified p2pool-13.4+ to run with Digitalcoin, Worldcoin, Craftcoin, Casinocoin, Anoncoin and Globalcoin.
+This is a modified version of forrestv's p2pool https://github.com/forrestv/p2pool
+zen2pool is optimized for fast block-time altcoins based on the scrypt and scrypt-N algorithm
 
 
-Original P2Pool README:
+Linux
 -------------------------
 
 Requirements:
@@ -12,7 +13,7 @@ Generic:
 * Twisted >=10.0.0
 * python-argparse (for Python =2.6)
 
-Linux:
+Ubuntu Linux:
 * sudo apt-get install python-zope.interface python-twisted python-twisted-web
 * sudo apt-get install python-argparse # if on Python 2.6
 
@@ -20,18 +21,10 @@ In order to run P2Pool with scrypt-based altcoins, you would need to build and i
 ltc_scrypt module that includes the scrypt proof of work code that Litecoin and its clones
 uses for hashes.
 
-Linux:
+Install scrypt module:
 
     cd litecoin_scrypt
     sudo python setup.py install
-
-Windows:
-* Install Python 2.7: http://www.python.org/getit/
-* Install Twisted: http://twistedmatrix.com/trac/wiki/Downloads
-* Install Zope.Interface: http://pypi.python.org/pypi/zope.interface/3.8.0
-* Install python win32 api: http://sourceforge.net/projects/pywin32/files/pywin32/Build%20218/
-* Install python win32 api wmi wrapper: https://pypi.python.org/pypi/WMI/#downloads
-* Unzip the files into C:\Python27\Lib\site-packages
 
 Running P2Pool:
 -------------------------
