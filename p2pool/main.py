@@ -28,17 +28,17 @@ import p2pool, p2pool.data as p2pool_data, p2pool.node as p2pool_node
 @defer.inlineCallbacks
 def main(args, net, datadir_path, merged_urls, worker_endpoint):
     try:
-        print 'p2pool (version %s)' % (p2pool.__version__,)
+        print 'zen2pool (version %s)' % (p2pool.__version__,)
         print
         
         @defer.inlineCallbacks
         def connect_p2p():
             # connect to bitcoind over bitcoin-p2p
-            print '''Testing bitcoind P2P connection to '%s:%s'...''' % (args.bitcoind_address, args.bitcoind_p2p_port)
+            print '''Testing <alt>coind P2P connection to '%s:%s'...''' % (args.bitcoind_address, args.bitcoind_p2p_port)
             factory = bitcoin_p2p.ClientFactory(net.PARENT)
             reactor.connectTCP(args.bitcoind_address, args.bitcoind_p2p_port, factory)
             def long():
-                print '''    ...taking a while. Common reasons for this include all of bitcoind's connection slots being used...'''
+                print '''    ...taking a while. Common reasons for this include all of <alt>coind's connection slots being used...'''
             long_dc = reactor.callLater(5, long)
             yield factory.getProtocol() # waits until handshake is successful
             if not long_dc.called: long_dc.cancel()
@@ -51,7 +51,7 @@ def main(args, net, datadir_path, merged_urls, worker_endpoint):
         
         # connect to bitcoind over JSON-RPC and do initial getmemorypool
         url = '%s://%s:%i/' % ('https' if args.bitcoind_rpc_ssl else 'http', args.bitcoind_address, args.bitcoind_rpc_port)
-        print '''Testing bitcoind RPC connection to '%s' with username '%s'...''' % (url, args.bitcoind_rpc_username)
+        print '''Testing <alt>coind RPC connection to '%s' with username '%s'...''' % (url, args.bitcoind_rpc_username)
         bitcoind = jsonrpc.HTTPProxy(url, dict(Authorization='Basic ' + base64.b64encode(args.bitcoind_rpc_username + ':' + args.bitcoind_rpc_password)), timeout=30)
         yield helper.check(bitcoind, net)
         temp_work = yield helper.getwork(bitcoind)
@@ -85,12 +85,12 @@ def main(args, net, datadir_path, merged_urls, worker_endpoint):
             if address is not None:
                 res = yield deferral.retry('Error validating cached address:', 5)(lambda: bitcoind.rpc_validateaddress(address))()
                 if not res['isvalid'] or not res['ismine']:
-                    print '    Cached address is either invalid or not controlled by local bitcoind!'
+                    print '    Cached address is either invalid or not controlled by local <alt>coind!'
                     address = None
             
             if address is None:
-                print '    Getting payout address from bitcoind...'
-                address = yield deferral.retry('Error getting payout address from bitcoind:', 5)(lambda: bitcoind.rpc_getaccountaddress('p2pool'))()
+                print '    Getting payout address from <alt>coind...'
+                address = yield deferral.retry('Error getting payout address from <alt>coind:', 5)(lambda: bitcoind.rpc_getaccountaddress('p2pool'))()
             
             with open(address_path, 'wb') as f:
                 f.write(address)
@@ -361,7 +361,7 @@ def run():
     
     realnets = dict((name, net) for name, net in networks.nets.iteritems() if '_testnet' not in name)
     
-    parser = fixargparse.FixedArgumentParser(description='p2pool (version %s)' % (p2pool.__version__,), fromfile_prefix_chars='@')
+    parser = fixargparse.FixedArgumentParser(description='zen2pool (version %s)' % (p2pool.__version__,), fromfile_prefix_chars='@')
     parser.add_argument('--version', action='version', version=p2pool.__version__)
     parser.add_argument('--net',
         help='use specified network (default: bitcoin)',
@@ -373,10 +373,10 @@ def run():
         help='enable debugging mode',
         action='store_const', const=True, default=False, dest='debug')
     parser.add_argument('-a', '--address',
-        help='generate payouts to this address (default: <address requested from bitcoind>)',
+        help='generate payouts to this address (default: <address requested from <alt>coind>)',
         type=str, action='store', default=None, dest='address')
     parser.add_argument('--datadir',
-        help='store data in this directory (default: <directory run_p2pool.py is in>/data)',
+        help='store data in this directory (default: <directory run_zen2pool.py is in>/data)',
         type=str, action='store', default=None, dest='datadir')
     parser.add_argument('--logfile',
         help='''log to this file (default: data/<NET>/log)''',
@@ -385,13 +385,13 @@ def run():
         help='call getauxblock on this url to get work for merged mining (example: http://ncuser:ncpass@127.0.0.1:10332/)',
         type=str, action='append', default=[], dest='merged_urls')
     parser.add_argument('--give-author', metavar='DONATION_PERCENTAGE',
-        help='donate this percentage of work towards the development of p2pool (default: 1.0)',
+        help='donate this percentage of work towards the development of zen2pool (default: 1.0)',
         type=float, action='store', default=1.0, dest='donation_percentage')
     parser.add_argument('--iocp',
         help='use Windows IOCP API in order to avoid errors due to large number of sockets being open',
         action='store_true', default=False, dest='iocp')
     parser.add_argument('--irc-announce',
-        help='announce any blocks found on irc://irc.freenode.net/#p2pool',
+        help='announce any blocks found on irc://irc.freenode.net/#p2pool-alt',
         action='store_true', default=False, dest='irc_announce')
     parser.add_argument('--no-bugreport',
         help='disable submitting caught exceptions to the author',
@@ -490,7 +490,7 @@ def run():
             if getattr(args, var_name) is None and conf_name in contents:
                 setattr(args, var_name, var_type(contents[conf_name]))
         if args.bitcoind_rpc_password is None:
-            parser.error('''Bitcoin configuration file didn't contain an rpcpassword= line! Add one!''')
+            parser.error('''<alt>coin configuration file didn't contain an rpcpassword= line! Add one!''')
     
     if args.bitcoind_rpc_username is None:
         args.bitcoind_rpc_username = ''
