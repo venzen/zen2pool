@@ -1,5 +1,6 @@
 This is a modified version of forrestv's p2pool https://github.com/forrestv/p2pool
-zen2pool is optimized for fast block-time altcoins based on the scrypt and scrypt-N algorithm
+zen2pool is P2Pool node software and optimized for fast block-time altcoins 
+based on the scrypt and scrypt-N algorithm
 
 
 Linux
@@ -8,27 +9,25 @@ Linux
 Requirements:
 -------------------------
 Generic:
-* Bitcoin >=0.8.5
-* Python >=2.6
+* Bitcoin >=0.8.6
+* Python 2.7
 * Twisted >=10.0.0
-* python-argparse (for Python =2.6)
 
 Ubuntu Linux:
 * sudo apt-get install python-zope.interface python-twisted python-twisted-web
-* sudo apt-get install python-argparse # if on Python 2.6
 
-In order to run P2Pool with scrypt-based altcoins, you would need to build and install the
-ltc_scrypt module that includes the scrypt proof of work code that Litecoin and its clones
-uses for hashes.
+In order to run zen2pool with scrypt-based altcoins, you would need to build and install
+the ltc_scrypt module that includes the scrypt proof of work code that Litecoin and its 
+clones use for hashes.
 
 Install scrypt module:
 
     cd litecoin_scrypt
     sudo python setup.py install
 
-Running P2Pool:
+Running zen2pool:
 -------------------------
-To use P2Pool, you need at least 2 prerequisites:
+To use zen2pool, you need at least 2 prerequisites:
 
 1) a locally running instance of the altcoin daemon you want to mine.
 2) configuration settings for the altcoin must be included in the files
@@ -36,7 +35,7 @@ To use P2Pool, you need at least 2 prerequisites:
 
 Once configured the relevant altcoin configuration can be invoked at runtime:
 
-    python run_p2pool.py --net myaltcoin
+    python run_zen2pool.py --net myaltcoin
 
 Then run your mining worker software, connecting to 127.0.0.1 on the worker port using
 a wallet address as your username and any random password, e.g.:
@@ -48,16 +47,19 @@ router. Forward the p2p port (defined in networks.py) to the host running P2Pool
 
 Run for additional options.
 
-    python run_p2pool.py --help
+    python run_zen2pool.py --help
 
 Donations towards further development:
 -------------------------
     1E3UUNxdZUzoA2RseKhXDCwiVCmPbxU69s
 
-Official wiki :
+Official P2Pool wiki :
 -------------------------
 https://en.bitcoin.it/wiki/P2Pool
 
+zen2pool Resource Library :
+-------------------------
+http://wp.me/p3EnMP-3lF
 
 Notes for Windows:
 =========================
