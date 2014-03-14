@@ -30,19 +30,19 @@ nets = dict(
 
     execoin=math.Object(
         PARENT=networks.nets['execoin'],
-        SHARE_PERIOD=9, # seconds
+        SHARE_PERIOD=10, # seconds
         CHAIN_LENGTH=24*60*60//10, # shares
         REAL_CHAIN_LENGTH=24*60*60//10, # shares
         TARGET_LOOKBEHIND=200, # shares
         SPREAD=40, # blocks
         IDENTIFIER='755F8AD0DD49380A'.decode('hex'),
         PREFIX='31357EF0ECB3C1BC'.decode('hex'),
-        P2P_PORT=9986,                         
-        MIN_TARGET=0,
+        P2P_PORT=9172,                         
+        MIN_TARGET=4,
         MAX_TARGET=2**256//2**20 - 1,
         PERSIST=True,                          
         WORKER_PORT=9173,                      
-        BOOTSTRAP_ADDRS=''.split(' '),
+        BOOTSTRAP_ADDRS='5.255.87.165'.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-exe',
         VERSION_CHECK=lambda v: True,
         VERSION_WARNING=lambda v: 'Upgrade Execoin to >=0.8.5.1!' if v < 80501 else None,
