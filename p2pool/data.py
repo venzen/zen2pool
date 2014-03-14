@@ -520,7 +520,7 @@ class OkayTracker(forest.Tracker):
             punish, punish_reason = best_share.should_punish_reason(previous_block, bits, self, known_txs)
             #venzen: this is rejecting and punishing shres every startup, are they coming to fast for soe altcoins?
             #!TODO base this conditional on the block time, on a per coin basis
-            if punish > 0 and best == 'disabled':
+            if punish > 0:
                 print 'Punishing share for %r! Jumping from %s to %s!' % (punish_reason, format_hash(best), format_hash(best_share.previous_hash))
                 best = best_share.previous_hash
             
