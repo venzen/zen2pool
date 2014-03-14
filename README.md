@@ -20,9 +20,13 @@ In order to run zen2pool with scrypt-based altcoins, you would need to build and
 the ltc_scrypt module that includes the scrypt proof of work code that Litecoin and its 
 clones use for hashes.
 
-Install scrypt module:
+Install the scrypt modules. Even if you're not intending to mine Litecoin or Vertcoin,
+these are the scrypt algorithms that all scrypt-based altcoins require:
 
     cd litecoin_scrypt
+    sudo python setup.py install
+
+    cd ../vertcoin_scrypt
     sudo python setup.py install
 
 Running zen2pool:
