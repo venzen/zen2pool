@@ -34,18 +34,37 @@ nets = dict(
         CHAIN_LENGTH=24*60*60//10, # shares
         REAL_CHAIN_LENGTH=24*60*60//10, # shares
         TARGET_LOOKBEHIND=200, # shares
-        SPREAD=40, # blocks
-        IDENTIFIER='755F8AD0DD49380A'.decode('hex'),
-        PREFIX='31357EF0ECB3C1BC'.decode('hex'),
-        P2P_PORT=9172,                         
+        SPREAD=50, # blocks
+        IDENTIFIER='657865636f696e65'.decode('hex'),
+        PREFIX='65657865636f696e'.decode('hex'),
+        P2P_PORT=9986,
         MIN_TARGET=4,
         MAX_TARGET=2**256//2**20 - 1,
-        PERSIST=True,                          
-        WORKER_PORT=9173,                      
-        BOOTSTRAP_ADDRS='5.255.87.165'.split(' '),
+        PERSIST=True,
+        WORKER_PORT=9173,
+        BOOTSTRAP_ADDRS='freebtc.eu 54.186.36.163'.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-exe',
         VERSION_CHECK=lambda v: True,
-        VERSION_WARNING=lambda v: 'Upgrade Execoin to >=0.8.5.1!' if v < 80501 else None,
+    ),
+
+    execoin_zen=math.Object(
+	# low-hashrate alternative pool resistant to Mh/s miners
+        PARENT=networks.nets['execoin'],
+        SHARE_PERIOD=9, # seconds
+        CHAIN_LENGTH=24*60*60//9, # shares
+        REAL_CHAIN_LENGTH=24*60*60//9, # shares
+        TARGET_LOOKBEHIND=50, # shares
+        SPREAD=40, # blocks
+        IDENTIFIER='ec2eec0192e91dee'.decode('hex'),
+        PREFIX='ec2eec0192e9f1c2'.decode('hex'),
+        P2P_PORT=9172,
+        MIN_TARGET=0,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=True,
+        WORKER_PORT=9173,
+        BOOTSTRAP_ADDRS=''.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-zen',
+        VERSION_CHECK=lambda v: True,
     ),
 
     terracoin=math.Object(
