@@ -62,7 +62,7 @@ nets = dict(
         MAX_TARGET=2**256//2**20 - 1,
         PERSIST=True,
         WORKER_PORT=9173,
-        BOOTSTRAP_ADDRS=''.split(' '),
+        BOOTSTRAP_ADDRS='5.255.87.177'.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-zen',
         VERSION_CHECK=lambda v: True,
     ),
