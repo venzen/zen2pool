@@ -14,7 +14,7 @@ Generic:
 * Twisted >=10.0.0
 
 Ubuntu Linux:
-* sudo apt-get install python-zope.interface python-twisted python-twisted-web
+    sudo apt-get install python-zope.interface python-twisted python-twisted-web
 
 In order to run zen2pool with scrypt-based altcoins, you would need to build and install
 the ltc_scrypt module that includes the scrypt proof of work code that Litecoin and its 
