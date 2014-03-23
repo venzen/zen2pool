@@ -8,26 +8,6 @@ from p2pool.util import math
 # changes can be done by changing one, then the other
 
 nets = dict(
-    bihthai=math.Object(
-        PARENT=networks.nets['bihthai'],
-        SHARE_PERIOD=3, # seconds
-        CHAIN_LENGTH=24*60*60//10, # shares
-        REAL_CHAIN_LENGTH=24*60*60//10, # shares
-        TARGET_LOOKBEHIND=100, # shares
-        SPREAD=120, # blocks
-        IDENTIFIER='112210f4b16c1cb1'.decode('hex'),
-        PREFIX='112210f4b16c1cb1'.decode('hex'),
-        P2P_PORT=11333,                         
-        MIN_TARGET=0,
-        MAX_TARGET=2**256//2**20 - 1,
-        PERSIST=False,                          
-        WORKER_PORT=11331,                      
-        BOOTSTRAP_ADDRS='',
-        ANNOUNCE_CHANNEL='#p2pool-bth',
-        VERSION_CHECK=lambda v: True,
-        VERSION_WARNING=lambda v: 'Upgrade Bihthai to >=0.8.5.1!' if v < 80501 else None,
-    ),
-
     execoin=math.Object(
         PARENT=networks.nets['execoin'],
         SHARE_PERIOD=10, # seconds
@@ -49,7 +29,7 @@ nets = dict(
 
     execoin_zen=math.Object(
 	# low-hashrate alternative pool resistant to Mh/s miners
-        PARENT=networks.nets['execoin'],
+        PARENT=networks.nets['execoin_zen'],
         SHARE_PERIOD=9, # seconds
         CHAIN_LENGTH=24*60*60//9, # shares
         REAL_CHAIN_LENGTH=24*60*60//9, # shares
@@ -62,7 +42,7 @@ nets = dict(
         MAX_TARGET=2**256//2**20 - 1,
         PERSIST=True,
         WORKER_PORT=9173,
-        BOOTSTRAP_ADDRS='5.255.87.177'.split(' '),
+        BOOTSTRAP_ADDRS='5.255.87.165'.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-zen',
         VERSION_CHECK=lambda v: True,
     ),
